@@ -1,11 +1,11 @@
 /*
 ** f_base.c for base in /home/marie-_j
-** 
+**
 ** Made by Jean-Denis Marie-Sainte
 ** Login   <marie-_j@epitech.net>
-** 
+**
 ** Started on  Fri Sep 18 16:47:44 2015 Jean-Denis Marie-Sainte
-** Last update Mon Sep 21 03:03:35 2015 Jean-Denis Marie-Sainte
+** Last update Fri Oct 23 14:10:38 2015 Jean-Denis Marie-Sainte
 */
 
 #include <unistd.h>
@@ -21,6 +21,8 @@ int	my_strlen(char *str)
   int	i;
 
   i = 0;
+  if (str == NULL)
+    return (0);
   while (str[i] != '\0')
     i++;
   return (i);
@@ -28,7 +30,7 @@ int	my_strlen(char *str)
 
 void	my_putstr(char *str)
 {
-  write(1, &str, my_strlen(str));
+  write(1, str, my_strlen(str));
 }
 
 void	my_puterr(char *str)
