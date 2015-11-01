@@ -5,7 +5,7 @@
 ** Login   <marie-_j@epitech.net>
 **
 ** Started on  Tue Oct 27 16:54:26 2015 Jean-Denis Marie-Sainte
-** Last update Fri Oct 30 16:53:48 2015 Jean-Denis Marie-Sainte
+** Last update Sun Nov  1 20:09:38 2015 Jean-Denis Marie-Sainte
 */
 
 #include <stdlib.h>
@@ -34,72 +34,52 @@ void	atrib_s(t_calc *c, char *nb1, char *nb2)
   c->retenue = 0;
 }
 
-/* void		checkin(char *nb1, char *nb2, t_calc *c) */
-/* { */
-/*   int		len; */
-/*   int		len2; */
-/*   int		tmp; */
+char		*calc_s(char *nb1, char *nb2)
+{
+  t_calc	c;
+  char		s;
 
-/*   len = 0; */
-/*   len2 = 0; */
-/*   tmp = 0; */
-/*   if (nb1[0] == '-') */
-/*     c->i--; */
-/*   if (nb2[0] == '-') */
-/*     c->i2--; */
-/*   if (c->i2 > c->i) */
-/*     tmp = c->i2; */
-/*   else */
-/*     tmp = c->i; */
-/*   while (tmp >= 0) */
-/*     { */
-/*     } */
-/*   if (c->i < c->i2) */
-/*     if (c->i == c->i2) */
-/*       { */
-/* 	if (nb1[len] == '-') */
-/* 	  len++; */
-/* 	else if (nb2[len2] == '-') */
-/* 	  len2++; */
-/* 	while (nb1[len] != '\0') */
-/* 	  { */
-/* 	    c->n1 = my_getc(nb1[len]); */
-/* 	    c->n2 = my_getc(nb2[len2]); */
-/* 	    if (c->n2 > c->n1) */
-/* 	      { */
-/* 		c->str = nb1; */
-/* 		nb1 = nb2; */
-/* 		nb2 = c->str; */
-/* 		c->str = NULL; */
-/* 		c->str = add_to_str(c->str, '-'); */
-/* 		return ; */
-/* 	      } */
-/* 	    len++; */
-/* 	  } */
-/*       } */
-/* } */
+  atrib_s(&c, nb1, nb2);
+  if (c.i2 > c.i)
+    {
+      c.lmax = c.i2;
+      c.s_tmp = nb2;
+    }
+  else
+    {
+      c.lmax = c.i;
+      c.s_tmp = nb1;
+    }
+  algo_calc_s(&c , nb1, nb2, &s);
+  if (c.retenue > 0)
+    {
+      s = c.retenue + '0';
+      c.str = add_to_str(c.str, s);
+    }
+  return (my_rev_str(c.str));
+}
 
-  void		calc_s(char *nb1, char *nb2)
-  {
-    t_calc	c;
-    char		s;
-
-    atrib_s(&c, nb1, nb2);
-    while (nb1[c.i] != 0)
-      {
-	c.n1 = my_getc(nb1[c.i]);
-	c.n2 = my_getc(nb2[c.i2]);
-	c.i--;
-	c.i2--;
-	if (c.retenue == 10)
-	  {
-	    c.n2 = c.n2 + 1;
-	    c.retenue = 0;
-	  }
-	if (c.n1 < c.n2)
-	  ret_s(&c, &s);
-	else
-	  cond_s(&c, &s);
-      }
-    my_putstr(my_rev_str(c.str));
-  }
+void	algo_calc_s(t_calc *c, char *nb1, char *nb2, char *s)
+{
+  while (c->lmax > -1)
+    {
+      c->n1 = my_getc(nb1[c->i]);
+      c->n2 = my_getc(nb2[c->i2]);
+      if (c->i2 > -1 && c->i < 0)
+	c->n1 = 0;
+      if (c->i > -1 && c->i2 < 0)
+	c->n2 = 0;
+      if (c->retenue == 10)
+	{
+	  c->n2 = c->n2 + 1;
+	  c->retenue = 0;
+	}
+      if (c->n1 < c->n2)
+	ret_s(c, s);
+      else
+	cond_s(c, s);
+      c->i--;
+      c->i2--;
+      c->lmax--;
+    }
+}

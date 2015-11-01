@@ -5,7 +5,7 @@
 ** Login   <marie-_j@epitech.net>
 **
 ** Started on  Thu Oct 15 12:13:35 2015 Jean-Denis Marie-Sainte
-** Last update Fri Oct 30 17:33:45 2015 Jean-Denis Marie-Sainte
+** Last update Sun Nov  1 20:08:50 2015 Jean-Denis Marie-Sainte
 */
 
 #include <stdlib.h>
@@ -64,11 +64,4 @@ char	*add_to_str(char *str, char c)
   if (tmp != NULL)
     free(tmp);
   return (str);
-}
-
-int	main(int ac, char **av)
-{
-  calc_m(av[1], av[2]);
-  //printf("%i\n", my_getc(av[1][0]));
-  return (0);
 }
