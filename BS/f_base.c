@@ -5,7 +5,7 @@
 ** Login   <marie-_j@epitech.net>
 **
 ** Started on  Fri Sep 18 16:47:44 2015 Jean-Denis Marie-Sainte
-** Last update Fri Oct 23 14:10:38 2015 Jean-Denis Marie-Sainte
+** Last update Sun Nov  1 23:45:25 2015 Jean-Denis Marie-Sainte
 */
 
 #include <unistd.h>
@@ -51,7 +51,7 @@ char	*my_rev_str(char *str)
   len = len - 1;
   tmp = len;
   len = len / 2;
-  while ( i <= len )
+  while (i <= len)
     {
       a = str[i];
       b = str[tmp];

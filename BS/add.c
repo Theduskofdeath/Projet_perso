@@ -5,7 +5,7 @@
 ** Login   <marie-_j@epitech.net>
 **
 ** Started on  Fri Oct 23 14:47:26 2015 Jean-Denis Marie-Sainte
-** Last update Sun Nov  1 19:59:59 2015 Jean-Denis Marie-Sainte
+** Last update Sun Nov  1 23:36:58 2015 Jean-Denis Marie-Sainte
 */
 
 #include <stdlib.h>
@@ -24,7 +24,7 @@ void	cond(t_calc *c, char *s)
 {
   c->tmp = c->n1 + c->n2;
   *s = c->tmp + '0';
-  c->str = add_to_str(c->str , *s);
+  c->str = add_to_str(c->str, *s);
 }
 
 void	attrib(t_calc *c, char *nb1, char *nb2)
@@ -77,7 +77,7 @@ char		*calc(char *nb1, char *nb2)
       c.lmax = c.i;
       c.s_tmp = nb1;
     }
-  algo_calc(&c , nb1, nb2, &s);
+  algo_calc(&c, nb1, nb2, &s);
   if (c.retenue > 0)
     {
       s = c.retenue + '0';
